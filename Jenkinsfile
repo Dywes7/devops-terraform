@@ -8,8 +8,8 @@ pipeline {
         stage('Disparar intâncias e LoadBalancer via Terraform'){
             steps{
                 sh 'cp -R terraform_openstack/* $TERRAFORM_DIR'
-                
-                dir('$TERRAFORM_DIR') {
+
+                dir("$TERRAFORM_DIR") {
                     sh 'terraform init'
                     sh 'terraform apply -auto-approve'
                 }
