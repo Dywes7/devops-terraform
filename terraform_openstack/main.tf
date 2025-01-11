@@ -50,6 +50,5 @@ resource "openstack_compute_instance_v2" "instancias_terraform" {
     echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC79Cia51x1CXaB7l97HdWZQoZM8ALlzv4xUhzjAkdX9 jenkins@jenkins-ansible" >> /home/ubuntu/.ssh/authorized_keys
 
     # Criar pasta para receber aplicação
-    mkdir /app
   EOT 
 }

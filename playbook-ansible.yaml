@@ -20,6 +20,15 @@
       file:
         path: /app
         state: absent
+      ignore_errors: yes
+    
+    - name: Garantir que o diretório /app exista
+      file:
+        path: /app
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
  
     - name: Copiar arquivos para construção dos containers nas intancias
       copy:
