@@ -35,11 +35,11 @@ pipeline {
             }
         }
 
-//        stage('Deploy via Playbook Ansible') {
-//            steps {                                  
-//                ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
-//            }
-//        }
+        stage('Deploy via Playbook Ansible') {
+            steps {                                  
+                ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
+            }
+        }
 
 
     }

@@ -1,0 +1,6 @@
+services:
+  app:
+    image: '192.168.159.207:8123/vicio/app:latest'
+    container_name: app
+    ports:
+      - "80:80"

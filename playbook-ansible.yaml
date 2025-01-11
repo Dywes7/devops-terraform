@@ -1,3 +1,57 @@
 ---
 - name: Deploy da aplicação nas intancias
   hosts: instancias
+
+  user: ubuntu
+  become: yes
+
+  vars:
+    nexus_username: "jenkins"
+    nexus_password: "jenkins"
+
+  tasks:
+    - name: Derrubar Ambiente
+      shell: ./down.sh
+      args:
+        chdir: /app
+      ignore_erros: yes
+
+    - name: Remover diretório app
+      file:
+        path: /app
+        state: absent
+ 
+    - name: Copiar arquivos para construção dos containers nas intancias
+      copy:
+        src: /var/lib/jenkins/workspace/vicio-app/{{ item }}
+        dest: /app/{{ item }}
+        owner: ubuntu
+        group: ubuntu
+        mode: '0644'
+      with_items:
+        - Dockerfile
+        - docker-compose.yaml
+        - down.sh
+        - up.sh
+
+    - name: Garantir que arquivos sejam executáveis
+      file:
+        path: "{{ item }}"
+        mode: '0755'
+        state: file
+      loop:
+        - /app/up.sh
+        - /app/down.sh
+
+    - name: Logan no registry Nexus
+      docker_login:
+        registry: "192.168.159.207:8123"
+        username: "{{ nexus_username }}"
+        password: "{{ nexus_password }}"
+      ignore_erros: yes
+
+    - name: Subir containers
+      shell: ./up.sh
+      args:
+        chdir: /app
+
