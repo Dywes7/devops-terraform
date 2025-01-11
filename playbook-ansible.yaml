@@ -54,7 +54,7 @@
 
     - name: Login no registry Nexus
       docker_login:
-        registry: "192.168.159.207:8123"
+        registry: "http://192.168.159.207:8123"
         username: "{{ nexus_username }}"
         password: "{{ nexus_password }}"
       ignore_errors: yes
