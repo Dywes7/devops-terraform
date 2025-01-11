@@ -10,14 +10,6 @@
     nexus_password: "jenkins"
 
   tasks:
-    - name: Garantir existência do diretório /app
-      file:
-        path: /app
-        state: directory
-        owner: ubuntu
-        group: ubuntu
-        mode: '0755'
-
     - name: Derrubar Ambiente
       shell: ./down.sh
       args:
