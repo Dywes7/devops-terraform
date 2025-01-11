@@ -1,9 +1,15 @@
 pipeline {
     agent any
+    environment{
+        TERRAFORM_DIR = '/var/lib/jenkins/terraform_state'
+    }
+
     stages{
         stage('Disparar intâncias e LoadBalancer via Terraform'){
             steps{
-                dir('terraform_openstack') {
+                sh 'cp -R terraform_openstack/* $TERRAFORM_DIR'
+                
+                dir('$TERRAFORM_DIR') {
                     sh 'terraform init'
                     sh 'terraform apply -auto-approve'
                 }
