@@ -45,10 +45,14 @@ resource "openstack_compute_instance_v2" "instancias_terraform" {
     apt-get update -y
 
     apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+      
+    echo '{
+      "insecure-registries": ["192.168.159.207:8123"]
+    }' | tee /etc/docker/daemon.json > /dev/null
+
+    systemctl restart docker
 
     # Add public key Ansible Server
     echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC79Cia51x1CXaB7l97HdWZQoZM8ALlzv4xUhzjAkdX9 jenkins@jenkins-ansible" >> /home/ubuntu/.ssh/authorized_keys
-
-    # Criar pasta para receber aplicação
   EOT 
 }
