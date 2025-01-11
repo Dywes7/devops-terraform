@@ -14,7 +14,7 @@
       shell: ./down.sh
       args:
         chdir: /app
-      ignore_erros: yes
+      ignore_errors: yes
 
     - name: Remover diretório app
       file:
