@@ -43,12 +43,12 @@
         - /app/up.sh
         - /app/down.sh
 
-    - name: Logan no registry Nexus
+    - name: Login no registry Nexus
       docker_login:
         registry: "192.168.159.207:8123"
         username: "{{ nexus_username }}"
         password: "{{ nexus_password }}"
-      ignore_erros: yes
+      ignore_errors: yes
 
     - name: Subir containers
       shell: ./up.sh
