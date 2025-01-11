@@ -4,6 +4,7 @@ pipeline {
         stage('Disparar intâncias e LoadBalancer via Terraform'){
             steps{
                 dir('terraform_openstack') {
+                    sh 'terraform init'
                     sh 'terraform apply -auto-approve'
                 }
             }
