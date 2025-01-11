@@ -1,6 +1,14 @@
 pipeline {
     agent any
     stages{
+        stage('Disparar intâncias e LoadBalancer via Terraform'){
+            steps{
+                dir('terraform_openstack') {
+                    sh 'terraform apply -auto-approve'
+                }
+            }
+        }
+
         stage('Build da imagem Docker'){
             steps{
                 sh 'docker build -t vicio/app .'
