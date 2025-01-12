@@ -73,7 +73,20 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - Ansible: Disparar comando para as instâncias
   
 ### **Pipeline passo-a-passo**
+1. Variáveis de ambiente (environment)
+   - TERRAFORM_DIR: Fixar diretório a ser utilizado para guardar estado atual da infraestrutura do Terraform. OBS: Necessário criar este diretório manualmente no servidor Jenkins.
+   - TAG: Buscar valor da última TAG enviada ao repositório remoto.
+     
+2. Estágio para aplicar valor de TAG mais recente nos arquivos app.py, docker-compose.yaml e script down.sh.
 
+3. Estágio para build da imagem Docker no servidor local Jenkins, para realização de teste posteriormente.
+
+4. Estágio para subir containers de forma local e realizar 'sleep' para garantir subida de containers antes da realização do próxio estágio.
+
+5. Estágio para atribuição de permissão de execução no arquivo de teste-app.sh, bem como execução do script.
+   - O script dispara uma requisição HTTP, aguardando reposta do status code.
+   - Caso status code seja igual a 200, o pipeline prossegue.
+   - Caso status code seja diferente de 200, o pipeline encerra.
 
 
 ### **Clonar o repositório**
