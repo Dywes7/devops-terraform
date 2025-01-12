@@ -58,7 +58,7 @@
         password: "{{ nexus_password }}"
       ignore_errors: yes
 
-    - name: Subir containers
+    - name: Subir containers nas instâncias
       shell: ./up.sh
       args:
         chdir: /app
