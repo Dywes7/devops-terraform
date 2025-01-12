@@ -169,8 +169,3 @@ Veja uma demonstração:
    - Endereço: [http://200.19.179.209:9000/stats](http://200.19.179.209:9000/stats)
    - Conteúdo do link: Painel do loadbalancer para verificação de estatísticas relacionadas ao uso/requisições nas instâncias
 
-
-
-Este projeto está licenciado sob a [MIT License](LICENSE).  
-Sinta-se à vontade para contribuir e adaptar este projeto conforme necessário!
-
