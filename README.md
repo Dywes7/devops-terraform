@@ -160,39 +160,17 @@ Após configurar o ambiente e construir os containers, a aplicação estará dis
 
 http://IP_LOADBALANCER:80
 
-Veja uma demonstração em: [http://200.19.179.209:80](http://200.19.179.209:80)
+Veja uma demonstração: 
+1. Página Web da aplicação
+   - Enedereço: [http://200.19.179.209:80](http://200.19.179.209:80)
+   - Conteúdo do link: **"Hello, DevOps! {VERSÃO}"**
 
-Acesse esta URL no navegador para ver a mensagem:  
+2. Painel de monitoramento do balanceador de carga
+   - Endereço: [http://200.19.179.209:9000/stats](http://[200.19.179.209:80](http://200.19.179.209:9000/stats))
+   - Nome de usuário: Admin
+   - Senha: senha
 
-**"Hello, DevOps! TAG"**
 
----
-
-## **Testando a aplicação**
-
-Utilize o script `teste-app.sh` para verificar se a aplicação está respondendo corretamente:
-
-```bash
-bash teste-app.sh
-```
-
-Este script faz uma requisição **GET** para a aplicação e verifica se o código de status HTTP retornado é **200**, indicando que a aplicação está funcionando corretamente.
-
----
-
-## **Limpeza**
-
-Para parar e remover os containers, além de limpar imagens Docker não utilizadas, execute:
-
-```bash
-bash down.sh
-```
-
-Este script garante que todos os recursos sejam limpos adequadamente.
-
----
-
-## **Licença**
 
 Este projeto está licenciado sob a [MIT License](LICENSE).  
 Sinta-se à vontade para contribuir e adaptar este projeto conforme necessário!
