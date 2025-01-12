@@ -158,7 +158,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 Após configurar o ambiente e construir os containers, a aplicação estará disponível no endereço:
 
-[http://IP_LOADBANCER:80]
+http://IP_LOADBANCER:80
 
 Acesse esta URL no navegador para ver a mensagem:  
 
