@@ -153,21 +153,12 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ---
 
-## **Construção de containers**
 
-O arquivo `Dockerfile` define o container Docker para a aplicação. Utilize o **Docker Compose** para construir e subir o container definido no `docker-compose.yaml`:
-
-```bash
-bash up.sh
-```
-
----
-
-## **Executando o projeto**
+## **Execução do projeto**
 
 Após configurar o ambiente e construir os containers, a aplicação estará disponível no endereço:
 
-[http://localhost:80](http://localhost:80)
+[http://IP_LOADBANCER:80]
 
 Acesse esta URL no navegador para ver a mensagem:  
 
