@@ -2,22 +2,32 @@ pipeline {
     agent any
     environment{
         TERRAFORM_DIR = '/var/lib/jenkins/terraform_state'
-        IMAGE_NAME = '192.168.159.207:8123/vicio/app:latest'
-        LOCAL_IMAGE_NAME = 'vicio/app:latest'
+        IMAGE_NAME = '192.168.159.207:8123/vicio/app'
+        LOCAL_IMAGE_NAME = 'vicio/app'
+
+        // Script para atribuir o valor da última TAG enviada no Git a variavel de ambiente TAG
+        TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
+        
     }
 
     stages{
 
+        stage('Aplicar TAG no código da aplicação'){
+            steps{
+                sh "sed -i -e 's#TAG#${TAG}#' ./app.py"
+            }
+        }
+
         stage('Build da imagem Docker'){
             steps{
-                sh 'docker build -t vicio/app .'
+                sh 'docker build -t vicio/app:${TAG} .'
             }
         } 
 
         stage('Subir container de forma local para teste'){
             steps{
                 // Alterar para a imagem local para realização do teste
-                sh "sed -i \"s|image: '${IMAGE_NAME}'|image: '${LOCAL_IMAGE_NAME}'|\" docker-compose.yaml"
+                sh "sed -i \"s|image: '${IMAGE_NAME}|image: '${LOCAL_IMAGE_NAME}|\" docker-compose.yaml"
 
                 // Subir ambiente de forma local
                 sh "docker compose up -d"
@@ -40,7 +50,7 @@ pipeline {
                 sh 'docker compose down'
     
                 // Reverte a imagem para o registry original
-                sh "sed -i \"s|image: '${LOCAL_IMAGE_NAME}'|image: '${IMAGE_NAME}'|\" docker-compose.yaml"
+                sh "sed -i \"s|image: '${LOCAL_IMAGE_NAME}|image: '${IMAGE_NAME}|\" docker-compose.yaml"
             }
             
         }
@@ -50,8 +60,8 @@ pipeline {
                 script{
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
                         sh 'docker login -u $USERNAME -p $PASSWORD ${NEXUS_URL}'
-                        sh 'docker tag vicio/app:latest ${NEXUS_URL}/vicio/app'
-                        sh 'docker push ${NEXUS_URL}/vicio/app'
+                        sh 'docker tag vicio/app:${TAG} ${NEXUS_URL}/vicio/app:${TAG}'
+                        sh 'docker push ${NEXUS_URL}/vicio/app:${TAG}'
                     }
                 }
             }
@@ -69,7 +79,10 @@ pipeline {
         }
 
         stage('Deploy via Playbook Ansible') {
-            steps {                                  
+            steps {
+                // Substituir texto TAG para varlor da variavel $TAG no docker-compose que é aplicado pelo Ansible
+                sh "sed -i -e 's#TAG#${TAG}#' ./docker-compose.yaml"
+
                 ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
             }
         }
