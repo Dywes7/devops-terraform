@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment{
         TERRAFORM_DIR = '/var/lib/jenkins/terraform_state'
-        IMAGE_NAME = '192.168.159.207:8123/vicio/app'
-        LOCAL_IMAGE_NAME = 'vicio/app'
+        // IMAGE_NAME = '192.168.159.207:8123/vicio/app'
+        IMAGE_NAME = 'vicio/app'
 
         // Script para atribuir o valor da última TAG enviada no Git a variavel de ambiente TAG
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
@@ -30,7 +30,7 @@ pipeline {
         stage('Subir container de forma local para teste'){
             steps{
                 // Alterar para a imagem local para realização do teste
-                sh "sed -i \"s|image: '${IMAGE_NAME}|image: '${LOCAL_IMAGE_NAME}|\" docker-compose.yaml"
+                // sh "sed -i \"s|image: '${IMAGE_NAME}|image: '${LOCAL_IMAGE_NAME}|\" docker-compose.yaml"
 
                 // Subir ambiente de forma local
                 sh "docker compose up -d"
@@ -52,8 +52,8 @@ pipeline {
                 // Derrubar ambiente
                 sh 'docker compose down'
     
-                // Reverte a imagem para o registry original
-                sh "sed -i \"s|image: '${LOCAL_IMAGE_NAME}|image: '${IMAGE_NAME}|\" docker-compose.yaml"
+                // Adiciona URL externa na imagem puxada do docker-compose para acesso ao registry
+                sh "sed -i \"s|image: '${IMAGE_NAME}|image: '${NEXUS_URL}/${IMAGE_NAME}|\" docker-compose.yaml"
             }
             
         }
