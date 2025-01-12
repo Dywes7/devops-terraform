@@ -17,6 +17,7 @@ pipeline {
                   // Substituir texto TAG para varlor da variavel $TAG
                 sh "sed -i -e 's#TAG#${TAG}#' ./app.py"
                 sh "sed -i -e 's#TAG#${TAG}#' ./docker-compose.yaml"
+                sh "sed -i -e 's#TAG#${TAG}#' ./down.sh"
             }
         }
 
