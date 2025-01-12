@@ -93,8 +93,8 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 7. Estágio para realizar o Push da imagem docker para o registry.
    - Realização de login no registry.
-   - Realização de 'tagueamento'.
-   - Realização do push.
+   - Realização de 'tagueamento' na imagem.
+   - Realização do push da imagem para o registry.
   
 8. Estágio para disparar instâncias e LoadBalancer via Terraform.
    - Copiar todo conteúdo do diretório `terraform_openstack` para o diretório fixado do terraform `$TERRAFORM_DIR`.
