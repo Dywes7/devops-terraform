@@ -58,7 +58,7 @@ pipeline {
             
         }
 
-        stage('Upload da imagem no Registry Nexus'){
+        stage('Push da imagem no Registry Nexus'){
             steps{
                 script{
                     withCredentials([usernamePassword(credentialsId: 'nexus-user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
@@ -87,12 +87,25 @@ pipeline {
             }
         }
 
-        stage('Deploy via Playbook Ansible') {
+        stage('Deploy da aplicação via Playbook Ansible') {
             steps {                
                 ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
             }
         }
 
+        stage('Capturar IP do Load Balancer') {
+            steps {
+                sh 'chmod +x ./extract_lb_ip.sh'
 
+                script {
+                    // Executar o script para capturar o IP do Load Balancer
+                    def lb_url = sh(script: './extract_lb_ip.sh', returnStdout: true).trim()
+                    echo "Load Balancer URL: ${lb_url}"
+
+                    // Armazenar a URL no build do Jenkins
+                    currentBuild.description = "LB URL: ${lb_url}"
+                }
+            }
+        }
     }
 }
