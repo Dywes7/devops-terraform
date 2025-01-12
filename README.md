@@ -18,7 +18,12 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ---
 
-## **Configuração**
+## **Configuração de variáveis**
+### **Jenkins**
+Gerenciar Jenkins > System > Marcar✔️ 'Variáveis de ambiente'
+Prencher informações da variável
+nome: NEXUS_URL
+valor: enedereco_ip_nexus:numero_de_porta
 
 ### **Clonar o repositório**
 
