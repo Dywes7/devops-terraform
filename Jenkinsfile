@@ -35,11 +35,14 @@ pipeline {
         }
 
         stage('Shutdown do container de teste'){
-            // Derrubar ambiente
-            sh 'docker compose down'
-
-            // Reverte a imagem para o registry original
-            sh "sed -i 's|image: ${LOCAL_IMAGE_NAME}|image: ${IMAGE_NAME}|' docker-compose.yaml"
+            steps{
+                // Derrubar ambiente
+                sh 'docker compose down'
+    
+                // Reverte a imagem para o registry original
+                sh "sed -i 's|image: ${LOCAL_IMAGE_NAME}|image: ${IMAGE_NAME}|' docker-compose.yaml"
+            }
+            
         }
 
         stage('Upload da imagem no Registry Nexus'){
