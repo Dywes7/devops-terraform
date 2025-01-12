@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment{
         TERRAFORM_DIR = '/var/lib/jenkins/terraform_state'
-        IMAGE_NAME = 'vicio/app'
+        // IMAGE_NAME = 'vicio/app'
 
         // Script para atribuir o valor da última TAG enviada no Git a variavel de ambiente TAG
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
@@ -50,7 +50,7 @@ pipeline {
                 sh 'docker compose down'
     
                 // Adiciona URL externa na imagem puxada do docker-compose para acesso ao registry pelas instancias
-                sh "sed -i \"s|image: '${IMAGE_NAME}|image: '${NEXUS_URL}/${IMAGE_NAME}|\" docker-compose.yaml"
+                sh "sed -i \"s|image: 'vicio/app|image: '${NEXUS_URL}/vicio/app|\" docker-compose.yaml"
             }
             
         }
