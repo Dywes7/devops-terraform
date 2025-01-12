@@ -31,7 +31,6 @@ resource "openstack_compute_instance_v2" "haproxy" {
         log global
         stats enable
         stats uri /stats
-        stats auth Admin:senha
     " >> /etc/haproxy/haproxy.cfg
 
     systemctl restart haproxy
