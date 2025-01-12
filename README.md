@@ -67,10 +67,11 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ## **Funcionamento do Pipeline**
 ### **Arquitetura**
-1. Temos um Servidor Jenkins, integrado ao Terraform e Ansible.
+1. Temos um Servidor Jenkins, integrado ao Terraform, Ansible e Nexus.
    - Jenkins: Execução do pipeline
    - Terraform: Provisionar máquinas virtuais e HAProxy (load balancer)
    - Ansible: Disparar comandos para as instâncias subir os containers via docker compose.
+   - Nexus: Registry Docker para repositório de imagens.
   
 ### **Arquivos do repositório**
 1. `Jenkinsfile`: Arquivo que descreve as etapas do pipeline.
