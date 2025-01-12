@@ -70,7 +70,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 1. Temos um Servidor Jenkins, integrado ao Terraform e Ansible.
    - Jenkins: Execução do pipeline
    - Terraform: Provisionar máquinas virtuais e HAProxy (load balancer)
-   - Ansible: Disparar comando para as instâncias
+   - Ansible: Disparar comandos para as instâncias subir os containers via docker compose.
   
 ### **Arquivos do repositório**
 1. `Jenkinsfile`: Arquivo que descreve as etapas do pipeline.
