@@ -122,7 +122,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 10. Substituição de string NEXUS_URL por valor da variável `NEXUS_URL` no arquivo playbook Ansible.
 
-11. Execução de deploy dos containers via playbook Ansible para acessar as intâncias de produção.
+11. Execução de deploy dos containers via playbook Ansible para acessar as intâncias de produção. OBS: Necessáio instalação do plugin `Ansible plugin` no Jenkins.  
     - Inicialmente é executado um script para derrubar o ambiente existente (caso já exista), com o script `down.sh` que resumidamente irá realizar o `docker compose down` e excluir a imagem antiga (caso exista).
     - É deletado e criado o diretório `/app`, para garantir que os arquivos antigos sejam eliminados e substituidos pelos novos do repositório.
     - Cópia de arquivos clonados do repositório para as instâncias.
