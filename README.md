@@ -97,8 +97,8 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - Realização do push da imagem para o registry.
   
 8. Estágio para disparar instâncias e LoadBalancer via Terraform.
-   - Copiar todo conteúdo do diretório `terraform_openstack` para o diretório fixado do terraform `$TERRAFORM_DIR`.
-   - Executar terraform init e terraform apply, passando como parâmetro o arquivo de variáveis `terraform.tfvars`. 
+   - Cópia de todo conteúdo do diretório `terraform_openstack` para o diretório fixado do terraform `$TERRAFORM_DIR`.
+   - Execução de `terraform init` e `terraform apply`, passando como parâmetro o arquivo de variáveis `terraform.tfvars`. 
 
 9. Estágio de sleep para garantir subida das instâncias antes da execução da playbook Ansible.
 
