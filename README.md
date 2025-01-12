@@ -30,7 +30,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - **Valor**: `endereco_ip_nexus:numero_de_porta`
 
 3. Ainda no Jenkins:
-   - Navegue até **Gerenciar Jenkins > Credentials > System > Global credentials > + Add Credentials **.
+   - Navegue até **Gerenciar Jenkins > Credentials > System > Global credentials > + Add Credentials**.
 
 4. Preencha as informações das credenciais para acesso ao Nexus e clique em `Save`:
    - **Scope**: `Global (Jenkins, nodes, items, all child items, etc)`  
@@ -38,7 +38,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - **Password**: `pass_nexus`
    - **ID**: `nexus-user`
 
-5. Ainda no Jenkins em Global **credentials > + Add Credentials**, adicione novas credenciais para integração com Ansible:
+5. Ainda no Jenkins em **Global credentials > + Add Credentials**, adicione novas credenciais para integração com Ansible:
    - **Scope**: `Global (Jenkins, nodes, items, all child items, etc)`  
    - **Username**: `Insira o usuário de sistema operacional a ser conectado nas instâncias`
    - **ID**: `JenkinsAnsible`
