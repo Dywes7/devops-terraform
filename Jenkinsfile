@@ -80,7 +80,7 @@ pipeline {
 
         stage('Sleep para subida das instâncias'){
             steps{
-                sh 'sleep 60'
+                sh 'sleep 40'
             }
         }
 
