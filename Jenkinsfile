@@ -17,7 +17,7 @@ pipeline {
         stage('Subir container de forma local para teste'){
             steps{
                 // Alterar para a imagem local para realização do teste
-                sh "sed -i 's|image: ${IMAGE_NAME}|image: ${LOCAL_IMAGE_NAME}|' docker-compose.yaml"
+                sh "sed -i \"s|image: '${IMAGE_NAME}'|image: '${LOCAL_IMAGE_NAME}'|\" docker-compose.yaml"
 
                 // Subir ambiente de forma local
                 sh "docker compose up -d"
@@ -40,7 +40,7 @@ pipeline {
                 sh 'docker compose down'
     
                 // Reverte a imagem para o registry original
-                sh "sed -i 's|image: ${LOCAL_IMAGE_NAME}|image: ${IMAGE_NAME}|' docker-compose.yaml"
+                sh "sed -i \"s|image: '${LOCAL_IMAGE_NAME}'|image: '${IMAGE_NAME}'|\" docker-compose.yaml"
             }
             
         }
