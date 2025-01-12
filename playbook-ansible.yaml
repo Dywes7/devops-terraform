@@ -5,9 +5,8 @@
   user: ubuntu
   become: yes
 
-  vars:
-    nexus_username: "jenkins"
-    nexus_password: "jenkins"
+  vars_files:
+    - /var/lib/jenkins/cre_openstack/secrets.yaml
 
   tasks:
     - name: Derrubar Ambiente
