@@ -48,7 +48,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    
 
 ### **Terraform**
-1. No arquivo `terraform_openstack/variables.tf` preencha os valores da variáveis de acordo o seu ambiente, com `fixed_ips` sendo relativo as duas instâncias.
+1. No arquivo `terraform_openstack/variables.tf` preencha os valores das variáveis de acordo o seu ambiente, com `fixed_ips` sendo relativo as duas instâncias.
    ```yaml
    variable "fixed_ips" {
      default = ["192.168.159.100", "192.168.159.101"]
