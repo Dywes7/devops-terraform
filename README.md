@@ -37,7 +37,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    nexus_username: "user_nexus"
    nexus_password: "pass_nexus"
 
-5. Crie o arquivo de credenciais para acesso ao provider Terrafor (OpenStack):
+5. Crie o arquivo de credenciais para acesso ao provider Terraform (OpenStack):
    - Crie o arquivo em `/var/lib/jenkins/cre_openstack/terraform.tfvars`.
 
 6. Preencha o arquivo `terraform.tfvars` com as seguintes linhas (substitua pelos valores reais das credenciais):
@@ -46,6 +46,21 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    os_user = "user_openstack"
    os_password = "pass_user_openstack"
    
+
+### **Terraform**
+1. No arquivo `terraform_openstack/variables.tf` preencha os valores da variáveis de acordo o seu ambiente, com `fixed_ips` sendo relativo as duas instâncias.
+   ```yaml
+   variable "fixed_ips" {
+     default = ["192.168.159.100", "192.168.159.101"]
+   }
+
+   variable "ip_loadbalancer" {
+    default = "200.19.179.209"
+   }
+
+   variable "nexus_ip" {
+    default = "192.168.159.207"
+   }
 
 ### **Clonar o repositório**
 
