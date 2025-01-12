@@ -1,6 +1,6 @@
 # Projeto CI/CD com Jenkins, Ansible, Docker, Nexus, e Terraform
 
-Este projeto implementa um pipeline completo de integração e entrega contínuas (CI/CD) para uma aplicação web simples utilizando **Jenkins**, **Ansible**, **Docker**, **Nexus Registry** e **Terraform**. O código fonte está hospedado no GitHub.
+Este projeto implementa um pipeline completo de integração e entrega contínuas (CI/CD) para uma aplicação web simples utilizando **Jenkins**, **Ansible**, **Docker**, **Nexus Registry**, **Terraform**, **HAProxy**. O código fonte está hospedado no GitHub.
 
 ---
 
@@ -14,6 +14,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 - **Jenkins**
 - **Nexus Repository**
 - **Terraform**
+- **HAProxy**
 - **Acesso ao GitHub**
 
 ---
@@ -61,6 +62,17 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    variable "nexus_ip" {
     default = "192.168.159.207"
    }
+
+## **Funcionamento do Pipeline**
+### **Arquitetura**
+1. Temos um Servidor Jenkins, integrado ao Terraform e Ansible.
+   - Jenkins: Execução do pipeline
+   - Terraform: Provisionar máquinas virtuais e HAProxy (load balancer)
+   - Ansible: Disparar comando para as instâncias
+  
+### **Pipeline passo-a-passo**
+
+
 
 ### **Clonar o repositório**
 
