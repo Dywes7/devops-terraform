@@ -82,6 +82,12 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - `main.tf`: Arquivo terraform para provisionamento das instâncias na nuvem OpenStack.
    - `haproxy.tf`: Arquivo terraform para provisionamento do balanceador de carga HAProxy.
    - `variables.tf`: Arquivo de variáveis terraform para definição dos endereços IPv4 das intâncias, loadbalancer e nexus.
+7. `scripts .sh`: Arquivos com entensão .sh para execução em bash linux.
+   - `down.sh`: Script que derruba os containers existentes e deleta a imagem docker antiga, caso exista.
+   - `up.sh`: Script que sobe os containers.
+   - `teste-app.sh`: Script que dispara requisição HTTP e valída o status code.
+   - `extract_lb_ip.sh`: Script que busca o endereço do balanceador de carga.
+     
   
 ### **Pipeline passo-a-passo**
 1. Variáveis de ambiente (environment)
