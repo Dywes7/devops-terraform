@@ -166,7 +166,7 @@ Veja uma demonstração:
    - Conteúdo do link: **"Hello, DevOps! {VERSÃO}"**
 
 2. Painel de monitoramento do balanceador de carga
-   - Endereço: [http://200.19.179.209:9000/stats](http://[200.19.179.209:9000/status](http://200.19.179.209:9000/stats))
+   - Endereço: [http://200.19.179.209:9000/stats](http://200.19.179.209:9000/stats)
 
 
 
