@@ -9,13 +9,17 @@ required_version = ">= 0.14.0"
   }
 }
 
+variable "os_user" {}
+variable "os_password" {}
+
 provider "openstack" {
-  user_name   = "diogo.feitosa"
+  user_name   = var.os_user
   tenant_name = "admin"
-  password    = "Dw18dw88@123"
+  password    = var.os_password
   auth_url    = "http://eclipse:5000/v3/"
   region      = "RegionOne"
 }
+
 
 resource "openstack_compute_instance_v2" "instancias_terraform" {
   count           = 2
@@ -26,7 +30,7 @@ resource "openstack_compute_instance_v2" "instancias_terraform" {
   security_groups = ["default"]
   network {
     name = "wlan"
-    fixed_ip_v4 = "192.168.159.${100 + count.index}"
+    fixed_ip_v4 = var.fixed_ips[count.index]
   }
   user_data = <<-EOT
     #!/bin/bash
@@ -47,7 +51,7 @@ resource "openstack_compute_instance_v2" "instancias_terraform" {
     apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
       
     echo '{
-      "insecure-registries": ["192.168.159.207:8123"]
+      "insecure-registries": ["${var.nexus_ip}:8123"]
     }' | tee /etc/docker/daemon.json > /dev/null
 
     systemctl restart docker

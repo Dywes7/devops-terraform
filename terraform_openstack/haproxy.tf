@@ -6,7 +6,7 @@ resource "openstack_compute_instance_v2" "haproxy" {
   security_groups = ["default"]
   network {
     name = "wan"
-    fixed_ip_v4 = "200.19.179.209"
+    fixed_ip_v4 = var.ip_loadbalancer
   }
   user_data = <<-EOT
     #!/bin/bash
@@ -21,8 +21,8 @@ resource "openstack_compute_instance_v2" "haproxy" {
 
     backend http_back
         balance roundrobin
-        server inst1 192.168.159.100:80 check
-        server inst2 192.168.159.101:80 check
+        server inst1 ${var.fixed_ips[0]}:80 check
+        server inst2 ${var.fixed_ips[1]}:80 check
 
     # Painel de monitoramento
     frontend stats

@@ -1,2 +1,3 @@
 terraform_openstack/terraform.tfstate
 terraform_openstack/terraform.tfstate.backup
+terraform_openstack/terraform.tfvars
