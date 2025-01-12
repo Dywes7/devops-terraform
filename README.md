@@ -158,7 +158,9 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 Após configurar o ambiente e construir os containers, a aplicação estará disponível no endereço:
 
-http://IP_LOADBANCER:80
+http://IP_LOADBALANCER:80
+
+Veja uma demonstração em: [http://200.19.179.209:80](http://200.19.179.209:80)
 
 Acesse esta URL no navegador para ver a mensagem:  
 
