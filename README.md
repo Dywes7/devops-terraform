@@ -167,8 +167,6 @@ Veja uma demonstração:
 
 2. Painel de monitoramento do balanceador de carga
    - Endereço: [http://200.19.179.209:9000/stats](http://[200.19.179.209:9000/status](http://200.19.179.209:9000/stats))
-   - Nome de usuário: Admin
-   - Senha: senha
 
 
 
