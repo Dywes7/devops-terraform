@@ -29,19 +29,34 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - **Nome**: `NEXUS_URL`  
    - **Valor**: `endereco_ip_nexus:numero_de_porta`
 
-3. Crie o arquivo de credenciais para o Nexus:
+3. Ainda no Jenkins:
+   - Navegue até **Gerenciar Jenkins > Credentials > System > Global credentials > + Add Credentials **.
+
+4. Preencha as informações das credenciais para acesso ao Nexus e clique em `Save`:
+   - **Scope**: `Global (Jenkins, nodes, items, all child items, etc)`  
+   - **Username**: `user_nexus`
+   - **Password**: `pass_nexus`
+   - **ID**: `nexus-user`
+
+5. Ainda no Jenkins em Global **credentials > + Add Credentials**, adicione novas credenciais para integração com Ansible:
+   - **Scope**: `Global (Jenkins, nodes, items, all child items, etc)`  
+   - **Username**: `Insira o usuário de sistema operacional a ser conectado nas instâncias`
+   - **ID**: `JenkinsAnsible`
+   - **PrivateKey**: `Insira a chave SSH privada utilizada pelo usuário Jenkins para acesso as intâncias`
+
+6. Crie o arquivo de credenciais para o Nexus:
    - Crie o arquivo em `/var/lib/jenkins/cre_openstack/secrets.yaml`.
 
-4. Preencha o arquivo `secrets.yaml` com as seguintes linhas (substitua pelos valores reais das credenciais):
+7. Preencha o arquivo `secrets.yaml` com as seguintes linhas (substitua pelos valores reais das credenciais):
 
    ```yaml
    nexus_username: "user_nexus"
    nexus_password: "pass_nexus"
 
-5. Crie o arquivo de credenciais para acesso ao provider Terraform (OpenStack):
+8. Crie o arquivo de credenciais para acesso ao provider Terraform (OpenStack):
    - Crie o arquivo em `/var/lib/jenkins/cre_openstack/terraform.tfvars`.
 
-6. Preencha o arquivo `terraform.tfvars` com as seguintes linhas (substitua pelos valores reais das credenciais):
+9. Preencha o arquivo `terraform.tfvars` com as seguintes linhas (substitua pelos valores reais das credenciais):
 
    ```yaml
    os_user = "user_openstack"
@@ -122,7 +137,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 10. Substituição de string NEXUS_URL por valor da variável `NEXUS_URL` no arquivo playbook Ansible.
 
-11. Execução de deploy dos containers via playbook Ansible para acessar as intâncias de produção. OBS: Necessáio instalação do plugin `Ansible plugin` no Jenkins.  
+11. Execução de deploy dos containers via playbook Ansible para acessar as intâncias de produção. OBS: Necessário instalação do plugin `Ansible plugin` no Jenkins.  
     - Inicialmente é executado um script para derrubar o ambiente existente (caso já exista), com o script `down.sh` que resumidamente irá realizar o `docker compose down` e excluir a imagem antiga (caso exista).
     - É deletado e criado o diretório `/app`, para garantir que os arquivos antigos sejam eliminados e substituidos pelos novos do repositório.
     - Cópia de arquivos clonados do repositório para as instâncias.
