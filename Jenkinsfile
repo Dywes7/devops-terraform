@@ -80,6 +80,12 @@ pipeline {
             }
         }
 
+        stage('Sleep para subida das instâncias'){
+            steps{
+                sh 'sleep 15'
+            }
+        }
+
         stage('Deploy via Playbook Ansible') {
             steps {                
                 ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
