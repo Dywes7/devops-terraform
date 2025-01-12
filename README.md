@@ -88,6 +88,29 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - Caso status code seja igual a 200, o pipeline prossegue.
    - Caso status code seja diferente de 200, o pipeline encerra.
 
+6. Estágio para derrubar os containers no ambiente de teste (Servidor local Jenkins).
+   - Também é realizado a substituição da URL no arquivo docker-compose.yaml para passar a pontar para o registry Nexus de forma externa. Isto é essencial para as instâncias se comunicarem com o Registry.
+
+7. Estágio para realizar o Push da imagem docker para o registry.
+   - Realização de login no registry.
+   - Realização de 'tagueamento'.
+   - Realização do push.
+  
+8. Estágio para disparar instâncias e LoadBalancer via Terraform.
+   - Copiar todo conteúdo do diretório `terraform_openstack` para o diretório fixado do terraform `$TERRAFORM_DIR`.
+   - Executar terraform init e terraform apply, passando como parâmetro o arquivo de variáveis `terraform.tfvars`. 
+
+9. Estágio de sleep para garantir subida das instâncias antes da execução da playbook Ansible.
+
+10. Substituição de string NEXUS_UR por valor da variável NEXUS_URL no arquivo playbook Ansible.
+
+11. Excução de deploy dos containers via playbook Ansible para acessar as intâncias de produção.
+    - Inicialmente é executado um script para derrubar o ambiente existente (caso já exista), com o script `down.sh` que resumidamente irá realizar o `docker compose down` e excluir a imagem antiga (caso exista).
+    - É deletado e criado o diretório `/app`, para garantir que os arquivos antigos sejam eliminados e substituidos pelos novos do repositório.
+    - Copia arquivos clonados do repositório para as instâncias.
+    - Garante a execução de scripts .sh.
+    - Realiza login no registry Nexus.
+    - Executa script `up.sh`, que basicamente faz o `docker compose up -d` para subir o novo ambiente.
 
 ### **Clonar o repositório**
 
