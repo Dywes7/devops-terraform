@@ -63,6 +63,8 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
     default = "192.168.159.207"
    }
 
+---
+
 ## **Funcionamento do Pipeline**
 ### **Arquitetura**
 1. Temos um Servidor Jenkins, integrado ao Terraform e Ansible.
