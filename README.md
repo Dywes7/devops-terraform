@@ -20,10 +20,12 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ## **Configuração de variáveis**
 ### **Jenkins**
-Gerenciar Jenkins > System > Marcar✔️ 'Variáveis de ambiente'
+Gerenciar Jenkins > System > Marcar✔️ 'Variáveis de ambiente'.
+
 Prencher informações da variável
-nome: NEXUS_URL
-valor: enedereco_ip_nexus:numero_de_porta
+
+1. nome: NEXUS_URL
+2. valor: enedereco_ip_nexus:numero_de_porta
 
 ### **Clonar o repositório**
 
