@@ -84,6 +84,12 @@ pipeline {
             }
         }
 
+        stage('Substiuir NEXUS_URL por valor da variavel no arquivo playbook ansible'){
+            steps{
+                sh "sed -i -e 's#NEXUS_URL#${NEXUS_URL}#' ./playbook-ansible.yaml"
+            }
+        }
+
         stage('Deploy da aplicação via Playbook Ansible') {
             steps {                
                 ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
