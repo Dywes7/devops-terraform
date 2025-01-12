@@ -72,6 +72,17 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
    - Terraform: Provisionar máquinas virtuais e HAProxy (load balancer)
    - Ansible: Disparar comando para as instâncias
   
+### **Arquivos do repositório**
+1. `Jenkinsfile`: Arquivo que descreve as etapas do pipeline.
+2. `Dockerfile`: Arquivo com imagem simples para execução de código python.
+3. `docker-compose.yaml`: Arquivo para subida do container, com imagem correspondente e relação de portas.
+4. `app.py`: Código para aplicação web simples em python que imprime a mensagem "Hello, DevOps! {TAG}", onde {TAG} será a última versão da aplicação.
+5. `playbook-ansible.yaml`: Arquivo ansible-playbook que realiza o reinício dos containers para garantir a subida com a versão de imagem mais recente.
+6. `terraform_openstack`: Diretório com arquivos terraform.
+   - `main.tf`: Arquivo terraform para provisionamento das instâncias na nuvem OpenStack.
+   - `haproxy.tf`: Arquivo terraform para provisionamento do balanceador de carga HAProxy.
+   - `variables.tf`: Arquivo de variáveis terraform para definição dos endereços IPv4 das intâncias, loadbalancer e nexus.
+  
 ### **Pipeline passo-a-passo**
 1. Variáveis de ambiente (environment)
    - TERRAFORM_DIR: Fixar diretório a ser utilizado para guardar estado atual da infraestrutura do Terraform. OBS: Necessário criar este diretório manualmente no servidor Jenkins.
@@ -117,31 +128,6 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
     - Execução de script para buscar a URL pública do LoadBalancer HAProxy.
     - Exibição da URL pública ao final do pipeline.
 
-### **Clonar o repositório**
-
-Primeiro, clone o repositório do GitHub onde o código fonte e os scripts de infraestrutura estão armazenados:
-
-```bash
-git clone [URL_DO_SEU_REPOSITORIO]
-cd [NOME_DO_SEU_REPOSITORIO]
-
-
----
-
-### **Configuração do ambiente**
-
-Utilize o **Ansible** para configurar o ambiente necessário para rodar a aplicação. O playbook `playbook-ansible.yaml` executa as seguintes tarefas:
-
-1. Prepara o ambiente derrubando containers existentes e limpando o diretório de trabalho.
-2. Configura o diretório de trabalho e copia os arquivos necessários para construir os containers Docker.
-3. Realiza login no Nexus Registry.
-4. Inicia os containers utilizando Docker Compose.
-
-Execute o playbook com o seguinte comando:
-
-```bash
-ansible-playbook playbook-ansible.yaml -i hosts
-```
 
 ---
 
