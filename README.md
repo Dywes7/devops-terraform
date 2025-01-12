@@ -167,6 +167,7 @@ Veja uma demonstração:
 
 2. Painel de monitoramento do balanceador de carga
    - Endereço: [http://200.19.179.209:9000/stats](http://200.19.179.209:9000/stats)
+   - Conteúdo do link: Painel do loadbalancer para verificação de estatísticas relacionadas ao uso/requisições nas instâncias
 
 
 
