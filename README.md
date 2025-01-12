@@ -104,13 +104,18 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 10. Substituição de string NEXUS_URL por valor da variável `NEXUS_URL` no arquivo playbook Ansible.
 
-11. Excução de deploy dos containers via playbook Ansible para acessar as intâncias de produção.
+11. Execução de deploy dos containers via playbook Ansible para acessar as intâncias de produção.
     - Inicialmente é executado um script para derrubar o ambiente existente (caso já exista), com o script `down.sh` que resumidamente irá realizar o `docker compose down` e excluir a imagem antiga (caso exista).
     - É deletado e criado o diretório `/app`, para garantir que os arquivos antigos sejam eliminados e substituidos pelos novos do repositório.
-    - Copia arquivos clonados do repositório para as instâncias.
-    - Garante a execução de scripts .sh.
-    - Realiza login no registry Nexus.
-    - Executa script `up.sh`, que basicamente faz o `docker compose up -d` para subir o novo ambiente.
+    - Cópia de arquivos clonados do repositório para as instâncias.
+    - Atribuição de permissão de execução dos scripts `.sh`.
+    - Realização login no registry Nexus.
+    - Execução de script `up.sh`, que basicamente faz o `docker compose up -d` para subir o novo ambiente.
+
+12. Estágio para capturar IP do LoadBalancer.
+    - Atribuição de permissão de execução ao script que busca o endereço do LoadBalancer.
+    - Execução de script para buscar a URL pública do LoadBalancer HAProxy.
+    - Exibição da URL pública ao final do pipeline.
 
 ### **Clonar o repositório**
 
