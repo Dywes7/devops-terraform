@@ -12,9 +12,11 @@ pipeline {
 
     stages{
 
-        stage('Aplicar TAG no código da aplicação'){
+        stage('Aplicar TAG no código da aplicação e docker-compose'){
             steps{
+                  // Substituir texto TAG para varlor da variavel $TAG
                 sh "sed -i -e 's#TAG#${TAG}#' ./app.py"
+                sh "sed -i -e 's#TAG#${TAG}#' ./docker-compose.yaml"
             }
         }
 
@@ -79,10 +81,7 @@ pipeline {
         }
 
         stage('Deploy via Playbook Ansible') {
-            steps {
-                // Substituir texto TAG para varlor da variavel $TAG no docker-compose que é aplicado pelo Ansible
-                sh "sed -i -e 's#TAG#${TAG}#' ./docker-compose.yaml"
-
+            steps {                
                 ansiblePlaybook credentialsId: 'JenkinsAnsible', disableHostKeyChecking: true, installation: 'Ansible', inventory: '/etc/ansible/hosts', playbook: './playbook-ansible.yaml', vaultTmpPath: ''
             }
         }
