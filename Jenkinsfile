@@ -75,7 +75,7 @@ pipeline {
 
                 dir("$TERRAFORM_DIR") {
                     sh 'terraform init'
-                    sh 'terraform apply -auto-approve'
+                    sh 'terraform apply -auto-approve -var-file="/var/lib/jenkins/cre_openstack/terraform.tfvars"'
                 }
             }
         }
