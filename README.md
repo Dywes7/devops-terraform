@@ -36,6 +36,14 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
  nexus_password: "pass_nexus"
  ```
 
+- Criar arquivo /var/lib/jenkins/cre_openstack/terraform.tfvars
+
+ Preencher com as seguintes linhas no arquivo inserindo as credencias para acesso ao nexus:
+ ```bash
+os_user = "user_openstack"
+os_password = "pass_user_openstack"
+ ```
+
    
 
 ### **Clonar o repositório**
