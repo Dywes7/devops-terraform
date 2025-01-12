@@ -102,7 +102,7 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 9. Estágio de sleep para garantir subida das instâncias antes da execução da playbook Ansible.
 
-10. Substituição de string NEXUS_UR por valor da variável NEXUS_URL no arquivo playbook Ansible.
+10. Substituição de string NEXUS_URL por valor da variável `NEXUS_URL` no arquivo playbook Ansible.
 
 11. Excução de deploy dos containers via playbook Ansible para acessar as intâncias de produção.
     - Inicialmente é executado um script para derrubar o ambiente existente (caso já exista), com o script `down.sh` que resumidamente irá realizar o `docker compose down` e excluir a imagem antiga (caso exista).
