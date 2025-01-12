@@ -18,32 +18,33 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ---
 
-## **Configuração de variáveis**
+## **Configuração de Variáveis**
+
 ### **Jenkins**
- - Gerenciar Jenkins > System > Marcar✔️ 'Variáveis de ambiente'.
+1. Acesse o Jenkins:
+   - Navegue até **Gerenciar Jenkins > System > Marcar ✔️ 'Variáveis de ambiente'**.
 
- Prencher informações da variável:
+2. Preencha as informações da variável de ambiente:
+   - **Nome**: `NEXUS_URL`  
+   - **Valor**: `endereco_ip_nexus:numero_de_porta`
 
- 1. nome: NEXUS_URL
- 2. valor: enedereco_ip_nexus:numero_de_porta
+3. Crie o arquivo de credenciais para o Nexus:
+   - Crie o arquivo em `/var/lib/jenkins/cre_openstack/secrets.yaml`.
 
+4. Preencha o arquivo `secrets.yaml` com as seguintes linhas (substitua pelos valores reais das credenciais):
 
-- Criar arquivo /var/lib/jenkins/cre_openstack/secrets.yaml
+   ```yaml
+   nexus_username: "user_nexus"
+   nexus_password: "pass_nexus"
 
- Preencher com as seguintes linhas no arquivo inserindo as credencias para acesso ao nexus:
- ```bash
- nexus_username: "user_nexus"
- nexus_password: "pass_nexus"
- ```
+5. Crie o arquivo de credenciais para acesso ao provider Terrafor (OpenStack):
+   - Crie o arquivo em `/var/lib/jenkins/cre_openstack/terraform.tfvars`.
 
-- Criar arquivo /var/lib/jenkins/cre_openstack/terraform.tfvars
+6. Preencha o arquivo `terraform.tfvars` com as seguintes linhas (substitua pelos valores reais das credenciais):
 
- Preencher com as seguintes linhas no arquivo inserindo as credencias para acesso ao nexus:
- ```bash
-os_user = "user_openstack"
-os_password = "pass_user_openstack"
- ```
-
+   ```yaml
+   os_user = "user_openstack"
+   os_password = "pass_user_openstack"
    
 
 ### **Clonar o repositório**
@@ -53,7 +54,7 @@ Primeiro, clone o repositório do GitHub onde o código fonte e os scripts de in
 ```bash
 git clone [URL_DO_SEU_REPOSITORIO]
 cd [NOME_DO_SEU_REPOSITORIO]
-```
+
 
 ---
 
