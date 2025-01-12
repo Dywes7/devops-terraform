@@ -22,18 +22,19 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 ### **Jenkins**
  - Gerenciar Jenkins > System > Marcar✔️ 'Variáveis de ambiente'.
 
-Prencher informações da variável:
+ Prencher informações da variável:
 
-1. nome: NEXUS_URL
-2. valor: enedereco_ip_nexus:numero_de_porta
+ 1. nome: NEXUS_URL
+ 2. valor: enedereco_ip_nexus:numero_de_porta
+
 
 - Criar arquivo /var/lib/jenkins/cre_openstack/secrets.yaml
 
-Preencher com as seguintes linhas no arquivo inserindo as credencias para acesso ao nexus:
-```bash
-nexus_username: "user_nexus"
-nexus_password: "pass_nexus"
-```
+ Preencher com as seguintes linhas no arquivo inserindo as credencias para acesso ao nexus:
+ ```bash
+ nexus_username: "user_nexus"
+ nexus_password: "pass_nexus"
+ ```
 
    
 
