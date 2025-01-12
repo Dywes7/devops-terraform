@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment{
+        // Diretório fixado do terraform para guardar o estado da infraestrutura
         TERRAFORM_DIR = '/var/lib/jenkins/terraform_state'
-        // IMAGE_NAME = 'vicio/app'
 
         // Script para atribuir o valor da última TAG enviada no Git a variavel de ambiente TAG
         TAG = sh(script: 'git describe --abbrev=0',,returnStdout: true).trim()
