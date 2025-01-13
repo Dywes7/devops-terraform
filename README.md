@@ -14,7 +14,6 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 - **Jenkins**
 - **Nexus Repository**
 - **Terraform**
-- **HAProxy**
 - **Acesso ao GitHub**
 
 ---
